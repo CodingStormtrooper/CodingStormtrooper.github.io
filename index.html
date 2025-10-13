@@ -1,15 +1,26 @@
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Allysha Bilges — Technical Support • Incident Triage</title>
   <meta name="description" content="Support engineer & triage lead reducing cycle time and bridging Support ↔ Engineering.">
   <link rel="icon" href="/assets/favicon.png">
+  <script>
+    // Theme bootstrap: respect saved preference, else default dark
+    (function() {
+      try {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light') document.documentElement.classList.remove('dark');
+        else document.documentElement.classList.add('dark');
+      } catch (e) { document.documentElement.classList.add('dark'); }
+    })();
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: { brand: '#7C3AED', ink:'#0B0B0F' },
@@ -23,19 +34,24 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="/assets/og.png">
 </head>
-<body class="bg-white text-zinc-900 antialiased">
-<header class="border-b border-zinc-200">
+<body class="bg-zinc-950 text-zinc-100 antialiased">
+<header class="border-b border-zinc-800">
   <nav class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-3 flex items-center justify-between">
     <a href="/" class="flex items-center gap-3">
       <img src="/assets/brand-logo.png" alt="AB cat logo" class="h-8 w-8 rounded">
       <span class="font-semibold">Allysha Bilges</span>
     </a>
-    <ul class="flex gap-6 text-sm">
-      <li><a class="hover:underline" href="/work/">Work</a></li>
-      <li><a class="hover:underline" href="/resume/">Resume</a></li>
-      <li><a class="hover:underline" href="/about/">About</a></li>
-      <li><a class="hover:underline" href="/contact/">Contact</a></li>
-    </ul>
+    <div class="flex items-center gap-6 text-sm">
+      <a class="hover:underline" href="/work/">Work</a>
+      <a class="hover:underline" href="/resume/">Resume</a>
+      <a class="hover:underline" href="/about/">About</a>
+      <a class="hover:underline" href="/contact/">Contact</a>
+      <button id="themeToggle" class="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 border border-zinc-700 hover:bg-zinc-800">
+        <span class="hidden sm:inline">Toggle</span>
+        <svg id="sun" class="h-4 w-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.5 6.5-1.5-1.5M6 6 4.5 4.5m13 0L17.5 6M6.5 17.5 6 18"/></svg>
+        <svg id="moon" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
   </nav>
 </header>
 <main>
@@ -44,51 +60,82 @@
   <div class="flex items-center gap-4">
     <img src="/assets/brand-logo.png" alt="AB cat logo" class="h-14 w-14 rounded">
     <div>
-      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">Technical Support Engineering • Incident Triage</h1>
-      <p class="mt-3 max-w-2xl text-lg text-zinc-700">
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white">Technical Support Engineering • Incident Triage</h1>
+      <p class="mt-3 max-w-2xl text-lg text-zinc-300">
         I reduce cycle time, de-risk releases, and bridge Support ↔ Engineering. Hands-on, systems-minded, and growing DevOps skills (Docker, GitHub Actions, K8s).
       </p>
     </div>
   </div>
   <div class="mt-8 flex flex-wrap gap-3">
     <a href="/resume/" class="inline-flex items-center rounded-lg px-4 py-2 bg-brand text-white font-medium hover:bg-purple-700">View Full Resume</a>
-    <a href="https://www.linkedin.com/in/allysha-bilges" class="inline-flex items-center rounded-lg px-4 py-2 border border-zinc-300 hover:bg-zinc-50">LinkedIn</a>
-    <a href="mailto:allysha.bilges@gmail.com" class="inline-flex items-center rounded-lg px-4 py-2 border border-zinc-300 hover:bg-zinc-50">Email</a>
+    <a href="https://www.linkedin.com/in/allysha-bilges" class="inline-flex items-center rounded-lg px-4 py-2 border border-zinc-700 hover:bg-zinc-900">LinkedIn</a>
+    <a href="mailto:allysha.bilges@gmail.com" class="inline-flex items-center rounded-lg px-4 py-2 border border-zinc-700 hover:bg-zinc-900">Email</a>
   </div>
 </section>
 
 <section class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 pb-12">
   <div class="grid md:grid-cols-3 gap-6">
-    <div class="p-6 rounded-2xl border border-zinc-200"><h3 class="font-semibold text-lg">Triage & Incident Response</h3><p class="mt-2 text-zinc-700">Led Tier-2/3 workflows and cross-team war rooms; improved MTTR and signal-to-noise.</p></div>
-    <div class="p-6 rounded-2xl border border-zinc-200"><h3 class="font-semibold text-lg">Release & Platform Support</h3><p class="mt-2 text-zinc-700">Logs, repro steps, and RCAs. Jenkins/K8s basics. Environment health and stability.</p></div>
-    <div class="p-6 rounded-2xl border border-zinc-200"><h3 class="font-semibold text-lg">Enablement & Process</h3><p class="mt-2 text-zinc-700">Kanban dashboards, acceptance-criteria workshops, and reusable playbooks.</p></div>
+    <div class="p-6 rounded-2xl border border-zinc-800">
+      <h3 class="font-semibold text-lg text-white">Triage & Incident Response</h3>
+      <p class="mt-2 text-zinc-300">Led Tier-2/3 workflows and cross-team war rooms; improved MTTR and signal-to-noise.</p>
+    </div>
+    <div class="p-6 rounded-2xl border border-zinc-800">
+      <h3 class="font-semibold text-lg text-white">Release & Platform Support</h3>
+      <p class="mt-2 text-zinc-300">Logs, repro steps, and RCAs. Jenkins/K8s basics. Environment health and stability.</p>
+    </div>
+    <div class="p-6 rounded-2xl border border-zinc-800">
+      <h3 class="font-semibold text-lg text-white">Enablement & Process</h3>
+      <p class="mt-2 text-zinc-300">Kanban dashboards, acceptance-criteria workshops, and reusable playbooks.</p>
+    </div>
   </div>
 </section>
 
-<section class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-12 border-t border-zinc-200">
+<section class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-12 border-t border-zinc-800">
   <div class="flex items-end justify-between">
-    <h2 class="text-2xl font-bold">Selected Work</h2>
+    <h2 class="text-2xl font-bold text-white">Selected Work</h2>
     <a class="text-sm text-brand hover:underline" href="/work/">See all work →</a>
   </div>
   <div class="mt-6 grid md:grid-cols-3 gap-6">
-    <a class="block p-6 rounded-2xl border border-zinc-200 hover:bg-zinc-50" href="/work/#cycle-time">
-      <h3 class="font-semibold">Cycle-Time Dashboard</h3><p class="mt-2 text-zinc-700">Before/after metrics; triage flow; insights that cut resolution time.</p>
+    <a class="block p-6 rounded-2xl border border-zinc-800 hover:bg-zinc-900" href="/work/#cycle-time">
+      <h3 class="font-semibold text-white">Cycle-Time Dashboard</h3>
+      <p class="mt-2 text-zinc-300">Before/after metrics; triage flow; insights that cut resolution time.</p>
     </a>
-    <a class="block p-6 rounded-2xl border border-zinc-200 hover:bg-zinc-50" href="/work/#pihole">
-      <h3 class="font-semibold">Home Lab: Pi-hole + Monitoring</h3><p class="mt-2 text-zinc-700">DNS, logs, backups; small automations; learning Docker/K8s.</p>
+    <a class="block p-6 rounded-2xl border border-zinc-800 hover:bg-zinc-900" href="/work/#pihole">
+      <h3 class="font-semibold text-white">Home Lab: Pi-hole + Monitoring</h3>
+      <p class="mt-2 text-zinc-300">DNS, logs, backups; small automations; learning Docker/K8s.</p>
     </a>
-    <a class="block p-6 rounded-2xl border border-zinc-200 hover:bg-zinc-50" href="/work/#weather-app">
-      <h3 class="font-semibold">Weather API App</h3><p class="mt-2 text-zinc-700">JS fetch + clean UI; charts; lessons learned.</p>
+    <a class="block p-6 rounded-2xl border border-zinc-800 hover:bg-zinc-900" href="/work/#weather-app">
+      <h3 class="font-semibold text-white">Weather API App</h3>
+      <p class="mt-2 text-zinc-300">JS fetch + clean UI; charts; lessons learned.</p>
     </a>
   </div>
 </section>
 
 </main>
-<footer class="mt-20 border-t border-zinc-200">
-  <div class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-8 text-sm text-zinc-600">
+<footer class="mt-20 border-t border-zinc-800">
+  <div class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-8 text-sm text-zinc-400">
     © <span id="y"></span> Allysha Bilges
   </div>
 </footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script>
+  document.getElementById('y').textContent=new Date().getFullYear();
+  // Toggle logic
+  const btn = document.getElementById('themeToggle');
+  const sun = document.getElementById('sun');
+  const moon = document.getElementById('moon');
+  function syncIcon(){{
+    const dark = document.documentElement.classList.contains('dark');
+    moon.style.display = dark ? 'block' : 'none';
+    sun.style.display = dark ? 'none' : 'block';
+  }}
+  syncIcon();
+  btn.addEventListener('click', () => {{
+    const root = document.documentElement;
+    const nowDark = !root.classList.contains('dark');
+    if (nowDark) root.classList.add('dark'); else root.classList.remove('dark');
+    try {{ localStorage.setItem('theme', nowDark ? 'dark' : 'light'); }} catch(e){{}}
+    syncIcon();
+  }});
+</script>
 </body>
 </html>
