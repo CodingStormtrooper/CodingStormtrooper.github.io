@@ -1,10 +1,9 @@
 
-# Allysha Bilges — Personal Site (Tailwind CDN, Dark Mode Default)
+# v3.2 — Dark/Light Toggle Fixed + Larger Logo
 
-- Brand color: #7C3AED (purple)
-- Logo: /assets/brand-logo.png (new)
-- Favicon: /assets/favicon.png (dark background)
-- OG: /assets/og.png (dark background)
-- Dark mode default with toggle; preference saved in localStorage.
+- Conditional classes for light/dark (no hardcoded dark-only classes).
+- Default dark; toggle writes localStorage('theme').
+- Header logo: h-10 (desktop h-11); Hero logo: h-20 (md:h-24).
+- Brand purple: #7C3AED.
 
-To deploy: push to `codingstormtrooper.github.io` repo root.
+Deploy: copy files to repo root.
