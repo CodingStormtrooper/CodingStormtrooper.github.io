@@ -5,28 +5,31 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About — Allysha Bilges</title>
-  <meta name="description" content="About Allysha Bilges.">
-  <link rel="icon" href="/assets/favicon.svg">
+  <meta name="description" content="About Allysha Bilges">
+  <link rel="icon" href="/assets/favicon.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: { brand: '#0EA5A4' },
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Arial'] }
+          colors: { brand: '#7C3AED', ink:'#0B0B0F' },
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','Segoe UI','Roboto','Arial'] }
         }
       }
     }
   </script>
   <meta property="og:title" content="About — Allysha Bilges">
-  <meta property="og:description" content="About Allysha Bilges.">
+  <meta property="og:description" content="About Allysha Bilges">
   <meta property="og:type" content="website">
   <meta property="og:image" content="/assets/og.png">
 </head>
 <body class="bg-white text-zinc-900 antialiased">
 <header class="border-b border-zinc-200">
-  <nav class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-4 flex items-center justify-between">
-    <a href="/" class="font-semibold">AB</a>
+  <nav class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/assets/brand-logo.png" alt="AB cat logo" class="h-8 w-8 rounded">
+      <span class="font-semibold">Allysha Bilges</span>
+    </a>
     <ul class="flex gap-6 text-sm">
       <li><a class="hover:underline" href="/work/">Work</a></li>
       <li><a class="hover:underline" href="/resume/">Resume</a></li>
@@ -37,14 +40,14 @@
 </header>
 <main>
 
-  <section class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-16">
-    <h1 class="text-3xl md:text-4xl font-extrabold">About</h1>
-    <p class="mt-6 max-w-3xl text-zinc-800">
-      I'm Allysha—Support engineer and triage lead who loves turning noisy incidents into clear action.
-      Outside of work: BBQ enthusiast, cat person, and weather nerd.
-      I like building small tools, tightening feedback loops, and documenting as I go.
-    </p>
-  </section>
+<section class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-16">
+  <h1 class="text-3xl md:text-4xl font-extrabold">About</h1>
+  <p class="mt-6 max-w-3xl text-zinc-800">
+    I'm Allysha—Support engineer and triage lead who loves turning noisy incidents into clear action.
+    Outside of work: BBQ enthusiast, cat person, and weather nerd.
+    I like building small tools, tightening feedback loops, and documenting as I go.
+  </p>
+</section>
 
 </main>
 <footer class="mt-20 border-t border-zinc-200">
