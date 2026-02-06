@@ -1,41 +1,8 @@
-
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Work — Allysha Bilges</title>
-  <meta name="description" content="Projects and case studies by Allysha Bilges.">
-  <link rel="icon" href="/assets/favicon.svg">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { brand: '#0EA5A4' },
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Arial'] }
-        }
-      }
-    }
-  </script>
-  <meta property="og:title" content="Work — Allysha Bilges">
-  <meta property="og:description" content="Projects and case studies by Allysha Bilges.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="/assets/og.png">
-</head>
-<body class="bg-white text-zinc-900 antialiased">
-<header class="border-b border-zinc-200">
-  <nav class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-4 flex items-center justify-between">
-    <a href="/" class="font-semibold">AB</a>
-    <ul class="flex gap-6 text-sm">
-      <li><a class="hover:underline" href="/work/">Work</a></li>
-      <li><a class="hover:underline" href="/resume/">Resume</a></li>
-      <li><a class="hover:underline" href="/about/">About</a></li>
-      <li><a class="hover:underline" href="/contact/">Contact</a></li>
-    </ul>
-  </nav>
-</header>
-<main>
+---
+layout: base.njk
+title: "Work \u2014 Allysha Bilges"
+description: "Projects and case studies by Allysha Bilges."
+---
 
   <section class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-16">
     <h1 class="text-3xl md:text-4xl font-extrabold">Work & Case Studies</h1>
@@ -77,13 +44,3 @@
       </ul>
     </div>
   </section>
-
-</main>
-<footer class="mt-20 border-t border-zinc-200">
-  <div class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-8 text-sm text-zinc-600">
-    © <span id="y"></span> Allysha Bilges
-  </div>
-</footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
-</body>
-</html>

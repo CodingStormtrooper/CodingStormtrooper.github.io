@@ -1,0 +1,24 @@
+{
+  "name": "codingstormtrooper.github.io",
+  "version": "1.0.0",
+  "description": "Static multi-page site suitable for GitHub Pages.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "start": "npx @11ty/eleventy --serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodingStormtrooper/CodingStormtrooper.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodingStormtrooper/CodingStormtrooper.github.io/issues"
+  },
+  "homepage": "https://github.com/CodingStormtrooper/CodingStormtrooper.github.io#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}
