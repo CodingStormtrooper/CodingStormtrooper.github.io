@@ -1,23 +1,9 @@
 
-# Allysha Bilges — Personal Site (Tailwind CDN)
+# v3.2 — Dark/Light Toggle Fixed + Larger Logo
 
-Static multi-page site suitable for GitHub Pages.
+- Conditional classes for light/dark (no hardcoded dark-only classes).
+- Default dark; toggle writes localStorage('theme').
+- Header logo: h-10 (desktop h-11); Hero logo: h-20 (md:h-24).
+- Brand purple: #7C3AED.
 
-## Structure
-- `/` — overview
-- `/work/` — projects & case studies (text-only; images removed for now)
-- `/resume/` — full printable resume (2025 content embedded)
-- `/about/` — short bio
-- `/contact/` — ways to reach me
-
-## Local preview
-Open `index.html` in a browser. Tailwind is loaded via CDN.
-
-## Deploy to GitHub Pages
-1. Push contents of this folder to `codingstormtrooper.github.io`.
-2. Ensure files are at repo root (not inside another subfolder).
-3. GitHub Pages will auto-serve your site.
-
-## Notes
-- Email updated to: allysha.bilges@gmail.com
-- When ready, add anonymized screenshots to `/assets/` and link them in `/work/`.
+Deploy: copy files to repo root.
