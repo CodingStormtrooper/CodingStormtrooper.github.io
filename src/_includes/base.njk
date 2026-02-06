@@ -1,11 +1,10 @@
-
 <!doctype html>
 <html lang="en" class="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About — Allysha Bilges</title>
-  <meta name="description" content="About Allysha Bilges">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
   <link rel="icon" href="/assets/favicon.png">
   <script>
     // Theme bootstrap: prefer saved; default dark
@@ -29,10 +28,11 @@
       }
     }
   </script>
-  <meta property="og:title" content="About — Allysha Bilges">
-  <meta property="og:description" content="About Allysha Bilges">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
   <meta property="og:type" content="website">
   <meta property="og:image" content="/assets/og.png">
+  {% if extraHeadStyles %}{{ extraHeadStyles | safe }}{% endif %}
 </head>
 <body class="bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 antialiased">
 <header class="border-b border-zinc-200 dark:border-zinc-800">
@@ -55,42 +55,33 @@
   </nav>
 </header>
 <main>
-
-<section class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-16">
-  <h1 class="text-3xl md:text-4xl font-extrabold">About</h1>
-  
-<p class="mt-6 max-w-3xl text-zinc-700 dark:text-zinc-300">
-  I'm Allysha—Support engineer and triage lead who loves turning noisy incidents into clear action.
-  Outside of work: BBQ enthusiast, cat person, and weather nerd.
-  I like building small tools, tightening feedback loops, and documenting as I go.
-</p>
-
-</section>
-
+{{ content | safe }}
 </main>
 <footer class="mt-20 border-t border-zinc-200 dark:border-zinc-800">
   <div class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-8 text-sm text-zinc-600 dark:text-zinc-400">
-    © <span id="y"></span> Allysha Bilges
+    &copy; <span id="y"></span> Allysha Bilges
   </div>
 </footer>
+{% raw %}
 <script>
   document.getElementById('y').textContent=new Date().getFullYear();
   const btn = document.getElementById('themeToggle');
   const sun = document.getElementById('sun');
   const moon = document.getElementById('moon');
-  function syncIcon(){{
+  function syncIcon(){
     const dark = document.documentElement.classList.contains('dark');
     moon.style.display = dark ? 'block' : 'none';
     sun.style.display = dark ? 'none' : 'block';
-  }}
+  }
   syncIcon();
-  btn.addEventListener('click', () => {{
+  btn.addEventListener('click', () => {
     const root = document.documentElement;
     const isDark = root.classList.contains('dark');
     if (isDark) root.classList.remove('dark'); else root.classList.add('dark');
-    try {{ localStorage.setItem('theme', isDark ? 'light' : 'dark'); }} catch(e){{}}
+    try { localStorage.setItem('theme', isDark ? 'light' : 'dark'); } catch(e){}
     syncIcon();
-  }});
+  });
 </script>
+{% endraw %}
 </body>
 </html>
