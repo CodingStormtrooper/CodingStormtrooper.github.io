@@ -23,11 +23,12 @@ description: "Projects and case studies by Allysha Bilges."
 
   <section id="pihole" class="py-6">
     <div class="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-      <h2 class="text-2xl font-bold">Pi-hole + Monitoring in Home Lab</h2>
+      <h2 class="text-2xl font-bold">Pi-hole + Selective VPN Routing in Home Lab</h2>
       <ul class="list-disc ml-5 mt-3 text-zinc-700 dark:text-zinc-300 space-y-2">
-        <li>DNS-level ad blocking; DHCP reservations; uptime checks.</li>
-        <li>Exploring Docker containers and moving toward K8s/EKS.</li>
-        <li>Backups and simple logging; notes on troubleshooting.</li>
+        <li>DNS-level ad blocking with encrypted upstream queries via dnscrypt-proxy and Mullvad DoH.</li>
+        <li>Selective VPN routing: MAC address-based iptables rules + Gluetun for device-by-device WireGuard tunneling while maintaining local network access for work devices.</li>
+        <li>Diagnosed and fixed DNS leak by routing Pi-hole upstream through encrypted DoH instead of plaintext Cloudflare.</li>
+        <li>Running on Raspberry Pi 4; Docker-based architecture with native Pi-hole install.</li>
       </ul>
     </div>
   </section>
