@@ -4,7 +4,9 @@
   "description": "Static multi-page site suitable for GitHub Pages.",
   "main": "index.js",
   "scripts": {
-    "build": "npx @11ty/eleventy",
+    "build:css": "npx @tailwindcss/cli -i src/assets/styles.css -o _site/assets/styles.css --minify",
+    "build:html": "npx @11ty/eleventy",
+    "build": "npm run build:html && npm run build:css",
     "start": "npx @11ty/eleventy --serve"
   },
   "repository": {
@@ -19,6 +21,8 @@
   },
   "homepage": "https://github.com/CodingStormtrooper/CodingStormtrooper.github.io#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2"
+    "@11ty/eleventy": "^3.1.2",
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
   }
 }
