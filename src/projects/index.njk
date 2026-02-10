@@ -1,18 +1,42 @@
 ---
 layout: base.njk
-title: "Blog & Projects — Allysha Bilges"
+title: "Projects & Learning — Allysha Bilges"
 description: "Personal projects, home lab experiments, and things I'm learning."
 ---
 
 <section class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-16">
-  <h1 class="text-3xl md:text-4xl font-extrabold">Blog & Projects</h1>
+  <h1 class="text-3xl md:text-4xl font-extrabold">Projects & Learning</h1>
   <p class="mt-3 max-w-2xl text-zinc-700 dark:text-zinc-300">Personal projects, home lab experiments, and things I'm learning along the way.</p>
 </section>
 
 <div class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+  <section id="proxmox" class="py-6">
+    <div class="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
+      <h2 class="text-2xl font-bold">Proxmox Backups & Firewall Hardening</h2>
+      <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Feb 9, 2026</p>
+
+      <h3 class="text-lg font-semibold mt-4">Scheduled Backups</h3>
+      <ul class="list-disc ml-5 mt-2 text-zinc-700 dark:text-zinc-300 space-y-2">
+        <li>Automated daily backups for the Jellyfin media server (VM 100) on Proxmox — scheduled at 21:00.</li>
+        <li>Snapshot mode (no VM downtime during backup), ZSTD compression, stored on local 1.9 TB storage pool.</li>
+        <li>Retention policy: keep last 1 backup. Email notifications configured for backup alerts.</li>
+      </ul>
+
+      <h3 class="text-lg font-semibold mt-4">Firewall Hardening</h3>
+      <ul class="list-disc ml-5 mt-2 text-zinc-700 dark:text-zinc-300 space-y-2">
+        <li>Locked down Proxmox host from fully open to LAN-only access. Default inbound policy set to DROP, outbound to ACCEPT.</li>
+        <li>Created a <code class="text-sm bg-zinc-100 dark:bg-zinc-800 px-1 rounded">localnet</code> alias for the LAN subnet (192.168.86.0/24) at the datacenter level.</li>
+        <li>Host: SSH (22) and Proxmox Web UI (8006) — allowed from LAN only. Everything else dropped.</li>
+        <li>VM 100 (Jellyfin): Jellyfin (8096) and SSH (22) — allowed from LAN only. Everything else dropped.</li>
+        <li>Disabled rpcbind (port 111) — an unnecessary NFS-related service that was listening on the host.</li>
+      </ul>
+    </div>
+  </section>
+
   <section id="pihole" class="py-6">
     <div class="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
       <h2 class="text-2xl font-bold">Pi-hole + Selective VPN Routing in Home Lab</h2>
+      <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Dec 2025</p>
       <ul class="list-disc ml-5 mt-3 text-zinc-700 dark:text-zinc-300 space-y-2">
         <li>DNS-level ad blocking with encrypted upstream queries via dnscrypt-proxy and Mullvad DoH.</li>
         <li>Selective VPN routing: MAC address-based iptables rules + Gluetun for device-by-device WireGuard tunneling while maintaining local network access for work devices.</li>
@@ -25,6 +49,7 @@ description: "Personal projects, home lab experiments, and things I'm learning."
   <section id="weather-app" class="py-6">
     <div class="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
       <h2 class="text-2xl font-bold">Weather API App</h2>
+      <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Feb 2, 2026</p>
       <ul class="list-disc ml-5 mt-3 text-zinc-700 dark:text-zinc-300 space-y-2">
         <li>Backend proxy server (Node.js/Express) to secure OpenWeatherMap API key server-side.</li>
         <li>Temperature unit conversion (Kelvin → Fahrenheit), weather icons, clean error handling for invalid cities.</li>
