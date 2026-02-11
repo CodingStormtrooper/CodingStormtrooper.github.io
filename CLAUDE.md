@@ -34,9 +34,10 @@ Push to `master` branch. GitHub Actions runs `npm run build` (Eleventy + Tailwin
 
 ## Assets
 
-- `src/assets/favicon.png` — site favicon
-- `src/assets/brand-logo.png` — nav and hero logo
+- `src/assets/favicon.svg` — site favicon (cat silhouette with glasses)
+- `src/assets/brand-logo.svg` — nav logo (cat + glasses + "AB" text)
 - `src/assets/og.png` — Open Graph image for social sharing
+- `src/assets/brand-logo.png` — legacy PNG logo (kept for reference)
 
 ## Key Conventions
 
