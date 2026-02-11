@@ -6,19 +6,12 @@
   <title>{{ title }}</title>
   <meta name="description" content="{{ description }}">
   <link rel="icon" href="/assets/favicon.png">
-  <script>
-    // Theme bootstrap: prefer saved; default light
-    (function() {
-      try {
-        const saved = localStorage.getItem('theme');
-        if (saved === 'dark') document.documentElement.classList.add('dark');
-      } catch (e) {}
-    })();
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: { brand: '#7C3AED', ink:'#0B0B0F' },
@@ -33,53 +26,57 @@
   <meta property="og:image" content="/assets/og.png">
   {% if extraHeadStyles %}{{ extraHeadStyles | safe }}{% endif %}
 </head>
-<body class="bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 antialiased">
-<header class="border-b border-zinc-200 dark:border-zinc-800">
+<body class="bg-white text-zinc-900 antialiased">
+<header class="border-b border-zinc-200">
   <nav class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-3 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3">
+    <a href="/" class="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded">
       <img src="/assets/brand-logo.png" alt="AB cat logo" class="h-10 w-10 md:h-11 md:w-11 rounded">
       <span class="font-semibold">Allysha Bilges</span>
     </a>
-    <div class="flex items-center gap-6 text-sm">
-      <a class="hover:underline" href="/work/">Work</a>
-      <a class="hover:underline" href="/projects/">Projects & Learning</a>
-      <a class="hover:underline" href="/resume/">Resume</a>
-      <a class="hover:underline" href="/about/">About</a>
-      <a class="hover:underline" href="/contact/">Contact</a>
-      <button id="themeToggle" class="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 border border-zinc-300 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800">
-        <span class="hidden sm:inline">Toggle</span>
-        <svg id="sun" class="h-4 w-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.5 6.5-1.5-1.5M6 6 4.5 4.5m13 0L17.5 6M6.5 17.5 6 18"/></svg>
-        <svg id="moon" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
+    <button id="menuToggle" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 hover:bg-zinc-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">
+      <svg id="menuOpen" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="menuClose" class="h-6 w-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div id="desktopNav" class="hidden md:flex items-center gap-6 text-sm">
+      <a class="hover:underline transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded px-1" href="/work/">Work</a>
+      <a class="hover:underline transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded px-1" href="/projects/">Projects & Learning</a>
+      <a class="hover:underline transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded px-1" href="/resume/">Resume</a>
+      <a class="hover:underline transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded px-1" href="/about/">About</a>
+      <a class="hover:underline transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded px-1" href="/contact/">Contact</a>
     </div>
   </nav>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-zinc-200">
+    <div class="mx-auto max-w-6xl px-4 py-2 flex flex-col">
+      <a class="py-3 text-sm hover:text-brand transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded" href="/work/">Work</a>
+      <a class="py-3 text-sm hover:text-brand transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded" href="/projects/">Projects & Learning</a>
+      <a class="py-3 text-sm hover:text-brand transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded" href="/resume/">Resume</a>
+      <a class="py-3 text-sm hover:text-brand transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded" href="/about/">About</a>
+      <a class="py-3 text-sm hover:text-brand transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded" href="/contact/">Contact</a>
+    </div>
+  </div>
 </header>
 <main>
 {{ content | safe }}
 </main>
-<footer class="mt-20 border-t border-zinc-200 dark:border-zinc-800">
-  <div class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-8 text-sm text-zinc-600 dark:text-zinc-400">
+<footer class="mt-20 border-t border-zinc-200">
+  <div class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-8 text-sm text-zinc-600">
     &copy; <span id="y"></span> Allysha Bilges
   </div>
 </footer>
 {% raw %}
 <script>
   document.getElementById('y').textContent=new Date().getFullYear();
-  const btn = document.getElementById('themeToggle');
-  const sun = document.getElementById('sun');
-  const moon = document.getElementById('moon');
-  function syncIcon(){
-    const dark = document.documentElement.classList.contains('dark');
-    moon.style.display = dark ? 'block' : 'none';
-    sun.style.display = dark ? 'none' : 'block';
-  }
-  syncIcon();
-  btn.addEventListener('click', () => {
-    const root = document.documentElement;
-    const isDark = root.classList.contains('dark');
-    if (isDark) root.classList.remove('dark'); else root.classList.add('dark');
-    try { localStorage.setItem('theme', isDark ? 'light' : 'dark'); } catch(e){}
-    syncIcon();
+  const menuBtn = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const openIcon = document.getElementById('menuOpen');
+  const closeIcon = document.getElementById('menuClose');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    openIcon.classList.toggle('hidden');
+    closeIcon.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    menuBtn.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
   });
 </script>
 {% endraw %}
