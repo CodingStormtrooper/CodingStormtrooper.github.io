@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "Baby Shower — Allysha Bilges"
-description: "Share your info for the baby shower."
+title: "Baby Shower — Allysha & Dylan"
+description: "Share your info for Allysha and Dylan's baby shower."
 extraHeadStyles: |
   <meta name="robots" content="noindex, nofollow">
 ---
@@ -11,7 +11,7 @@ extraHeadStyles: |
 
     {# ── Form Card ── #}
     <div id="formCard" class="bg-white border border-zinc-200 rounded-2xl shadow-sm p-8">
-      <h1 class="text-2xl font-bold text-center mb-2">Baby Shower 🍼</h1>
+      <h1 class="text-2xl font-bold text-center mb-2">Allysha & Dylan's Baby Shower 🍼</h1>
       <p class="text-zinc-600 text-center mb-8">
         Drop your info below so we can send you the RSVP and registry details!
       </p>
@@ -22,7 +22,7 @@ extraHeadStyles: |
         <a href="mailto:allysha.bilges@gmail.com" class="underline font-medium">allysha.bilges@gmail.com</a> directly.
       </div>
 
-      <form id="showerForm" class="space-y-5" novalidate>
+      <form id="showerForm" class="space-y-5">
         <div>
           <label for="firstName" class="block text-sm font-medium mb-1">First Name</label>
           <input
@@ -86,21 +86,25 @@ extraHeadStyles: |
   const successCard = document.getElementById('successCard');
   const errorBanner = document.getElementById('errorBanner');
   const submitBtn = document.getElementById('submitBtn');
+  var controller = null;
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    // HTML5 validation
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
 
+    // Abort any previous in-flight request
+    if (controller) controller.abort();
+    controller = new AbortController();
+
     errorBanner.classList.add('hidden');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting…';
 
-    const payload = {
+    var payload = {
       firstName: document.getElementById('firstName').value.trim(),
       lastName: document.getElementById('lastName').value.trim(),
       email: document.getElementById('email').value.trim(),
@@ -112,13 +116,13 @@ extraHeadStyles: |
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       });
 
-      // no-cors means we can't read the response, but if fetch didn't throw the
-      // request was sent successfully
       formCard.classList.add('hidden');
       successCard.classList.remove('hidden');
     } catch (err) {
+      if (err.name === 'AbortError') return;
       errorBanner.classList.remove('hidden');
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit';
