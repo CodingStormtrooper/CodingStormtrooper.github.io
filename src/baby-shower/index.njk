@@ -1,0 +1,129 @@
+---
+layout: base.njk
+title: "Baby Shower — Allysha Bilges"
+description: "Share your info for the baby shower."
+extraHeadStyles: |
+  <meta name="robots" content="noindex, nofollow">
+---
+
+<section class="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-16">
+  <div class="mx-auto max-w-xl">
+
+    {# ── Form Card ── #}
+    <div id="formCard" class="bg-white border border-zinc-200 rounded-2xl shadow-sm p-8">
+      <h1 class="text-2xl font-bold text-center mb-2">Baby Shower 🍼</h1>
+      <p class="text-zinc-600 text-center mb-8">
+        Drop your info below so we can send you the RSVP and registry details!
+      </p>
+
+      {# Error banner — hidden by default #}
+      <div id="errorBanner" class="hidden mb-6 rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-700">
+        Something went wrong. Please try again, or email
+        <a href="mailto:allysha.bilges@gmail.com" class="underline font-medium">allysha.bilges@gmail.com</a> directly.
+      </div>
+
+      <form id="showerForm" class="space-y-5" novalidate>
+        <div>
+          <label for="firstName" class="block text-sm font-medium mb-1">First Name</label>
+          <input
+            type="text" id="firstName" name="firstName" required autocomplete="given-name"
+            class="w-full rounded-lg border border-zinc-300 px-4 py-2.5 text-sm transition-colors duration-200
+                   focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+          />
+        </div>
+
+        <div>
+          <label for="lastName" class="block text-sm font-medium mb-1">Last Name</label>
+          <input
+            type="text" id="lastName" name="lastName" required autocomplete="family-name"
+            class="w-full rounded-lg border border-zinc-300 px-4 py-2.5 text-sm transition-colors duration-200
+                   focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium mb-1">Email</label>
+          <input
+            type="email" id="email" name="email" required autocomplete="email"
+            class="w-full rounded-lg border border-zinc-300 px-4 py-2.5 text-sm transition-colors duration-200
+                   focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+          />
+        </div>
+
+        <button
+          type="submit" id="submitBtn"
+          class="w-full rounded-lg bg-brand text-white font-semibold py-2.5 text-sm
+                 hover:bg-purple-700 transition-colors duration-200
+                 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2
+                 disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+
+    {# ── Success Card ── #}
+    <div id="successCard" class="hidden bg-white border border-zinc-200 rounded-2xl shadow-sm p-8 text-center">
+      <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+        <svg class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <h2 class="text-xl font-bold mb-2">Thank you!</h2>
+      <p class="text-zinc-600">We've got your info. Keep an eye on your inbox for the RSVP and registry details.</p>
+    </div>
+
+  </div>
+</section>
+
+{% raw %}
+<script>
+(function () {
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw206mtzA5eNCTorN5SrmHial7rR7xD5u_-DeIBGMzme5I9HGffvVZyNJx5h3xtiDBK/exec';
+
+  const form = document.getElementById('showerForm');
+  const formCard = document.getElementById('formCard');
+  const successCard = document.getElementById('successCard');
+  const errorBanner = document.getElementById('errorBanner');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // HTML5 validation
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    errorBanner.classList.add('hidden');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+
+    const payload = {
+      firstName: document.getElementById('firstName').value.trim(),
+      lastName: document.getElementById('lastName').value.trim(),
+      email: document.getElementById('email').value.trim(),
+    };
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload),
+      });
+
+      // no-cors means we can't read the response, but if fetch didn't throw the
+      // request was sent successfully
+      formCard.classList.add('hidden');
+      successCard.classList.remove('hidden');
+    } catch (err) {
+      errorBanner.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+    }
+  });
+})();
+</script>
+{% endraw %}
